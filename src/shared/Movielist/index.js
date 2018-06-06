@@ -41,8 +41,9 @@ class MovieList extends Component {
 
   componentDidMount() {
       this.setState({
-        movies: this.props.serverRequest(9),
-        // movies: this.props.offlineRequest(),
+        movies: !this.props.filter && this.props.phrase ?
+          this.props.serverRequest(9) :
+          this.props.searchRequest(this.props.filter, this.props.phrase),
       });
   }
 

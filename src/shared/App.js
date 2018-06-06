@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Header from './Header/';
 import MovieDetails from './Movielist/MovieItem/MovieDetails';
-import SearchResult from './Movielist/SearchResult';
+import MovieList from './Movielist/';
 import { MissingPage } from './Error/MissingPage';
 import { Footer } from './Footer/';
 
@@ -22,17 +22,12 @@ const NoMoviesFound = loadable({
   loading: () => Loading,
 });
 
-const MovieList = loadable({
-  loader: () => import('./MovieList'),
-  loading: () => Loading,
-});
-
 const SingleMovie = ({ match }) => (
   <MovieDetails id={match.params.id} />
 );
 
-const Filter = ({ match }) => (
-  <SearchResult filter={match.params.filter} phrase={match.params.phrase} />
+const FilteredMovies = ({ match }) => (
+  <MovieList filter={match.params.filter} phrase={match.params.phrase} />
 );
 
 class App extends Component {
@@ -46,7 +41,7 @@ class App extends Component {
           <Route exact path="/" component={NoMoviesFound} />
           <Route path="/movies" component={MovieList} />
           <Route path="/film/:id" component={SingleMovie} />
-          <Route path="/:filter/:phrase" component={Filter} />
+          <Route path="/:filter/:phrase" component={FilteredMovies} />
           <Route component={MissingPage} />
         </Switch>
         <Footer />

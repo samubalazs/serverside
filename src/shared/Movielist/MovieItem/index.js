@@ -13,18 +13,18 @@ class MovieItem extends Component {
   }
 
   render() {
-    const movieDetails = this.props.moviedata;
+    const details = this.props.moviedata;
 
     return (
-      <Col md={4} key={movieDetails.id} className="single-movie">
-        <Link to={`/film/${movieDetails.id}`}>
-          <Image src={movieDetails.poster_path} responsive thumbnail />
+      <Col md={4} key={details.id} className="single-movie">
+        <Link to={`/film/${details.id}`}>
+          <Image src={details.poster_path} responsive thumbnail />
         </Link>
-        <div className="title">{truncate(movieDetails.title, 30)}</div>
+        <div className="title">{truncate(details.title, 30)}</div>
         <Badge pullRight>
-          {releaseDate(movieDetails.release_date)}
+          {releaseDate(details.release_date)}
         </Badge>
-        <div className="genres">{listGenres(movieDetails.genres, 3)}</div>
+        <div className="genres">{listGenres(details.genres, 3)}</div>
       </Col>
     );
   }

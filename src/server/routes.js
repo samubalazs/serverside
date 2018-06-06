@@ -1,6 +1,5 @@
 import NoMoviesFound from '../shared/Movielist/NoMoviesFound';
 import MovieList from '../shared/MovieList';
-import SearchResult from '../shared/MovieList/SearchResult';
 import MovieDetails from '../shared/Movielist/MovieItem/MovieDetails';
 import { MissingPage } from '../shared/Error/MissingPage';
 
@@ -8,8 +7,8 @@ const SingleMovie = ({ match }) => (
   <MovieDetails id={match.params.id} />
 );
 
-const Filter = ({ match }) => (
-  <SearchResult filter={match.params.filter} phrase={match.params.phrase} />
+const FilteredMovies = ({ match }) => (
+  <MovieList filter={match.params.filter} phrase={match.params.phrase} />
 );
 
 const routes = [
@@ -24,7 +23,7 @@ const routes = [
   },
   {
     path: '/filter/:phrase',
-    component: Filter,
+    component: FilteredMovies,
   },
   {
     path: '/film/:id',
