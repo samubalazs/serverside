@@ -1,0 +1,57 @@
+@import url("../App.style.less");
+
+.roulette-details {
+  min-height: 400px;
+
+  .option-bar {
+    font-weight: bold;    
+    margin-top: 10px;
+
+    .navbar-brand {
+      color: @netflix-black;
+    }
+  }
+
+  .center {
+    font-size: 40px;
+    position: absolute;
+    left: 55%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top: 160px;
+  }
+
+  &&.single-movie {
+    padding: 10px;
+    color: @netflix-black;
+
+    img {
+      width: 100%
+    }
+
+    .title {
+      color: @netflix-red;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    .time-info span {
+      font-weight: bold;
+      margin-right: 30px;
+      margin-top: 10px;
+    }
+
+    .overview {
+      margin-top: 10px;
+    }
+
+    .genres {
+      margin-top: 10px;
+    }
+
+    .rating {
+      margin-top: 10px;
+    }
+  }
+}
