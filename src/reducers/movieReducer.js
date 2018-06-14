@@ -1,17 +1,18 @@
 export const movieReducer = (state = {
   movies: {},
+  related: {},
 }, action) => {
   switch (action.type) {
-    case 'READ_DATA':
+    case 'SEARCH_DATA':
       state = {
           ...state,
           movies: action.payload,
       };
       break;
-    case 'SEARCH_DATA':
+    case 'RELATED_DATA':
       state = {
           ...state,
-          movies: action.payload,
+          related: action.payload,
       };
       break;
     case 'SORT_DATA_BY_RELEASEDATE':
@@ -27,12 +28,6 @@ export const movieReducer = (state = {
       };
       break;
     case 'SINGLE_MOVIE_DATA':
-      state = {
-          ...state,
-          movies: action.payload,
-      };
-      break;
-    case 'SEEALSO_DATA':
       state = {
           ...state,
           movies: action.payload,

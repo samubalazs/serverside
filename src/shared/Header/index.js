@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, FormGroup, FormControl, ButtonGroup, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -65,16 +65,18 @@ export default class Header extends Component {
               <div className='menu-bar'>
                 <div className="info-text">
                   <span>Search by</span>
-                  <Button
-                    className="search-by-title"
-                    value="title"
-                    onClick={ (e) => this.filterChange(e)}
-                  >Title</Button>
-                  <Button
-                    className="search-by-genre"
-                    value="genres"
-                    onClick={ (e) => this.filterChange(e)}
-                  >Genre</Button>
+                  <ButtonGroup>
+                    <Button
+                      className="search-by-title"
+                      value="title"
+                      onClick={ (e) => this.filterChange(e)}
+                    >Title</Button>
+                    <Button
+                      className="search-by-genre"
+                      value="genres"
+                      onClick={ (e) => this.filterChange(e)}
+                    >Genre</Button>
+                  </ButtonGroup>
                   <NavLink to={{ pathname: pathname }}>
                     <Button className="search">Search</Button>
                   </NavLink>

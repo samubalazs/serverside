@@ -3,10 +3,11 @@ import { Row, Col, Image, Navbar } from 'react-bootstrap';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import RelatedList from '../related';
 
 import {
   singleMovieRequest,
-  seeAlso,
+  relatedRequest,
 } from '../../../actions/movieActions';
 
 import {
@@ -15,7 +16,7 @@ import {
 
 const rouletteDetails = classNames({
     'show-grid': true,
-    'roulette-details': true,
+    'movie-details': true,
     'single-movie': true,
 });
 
@@ -33,15 +34,20 @@ class MovieDetails extends Component {
 
     this.state = {
       movies,
-      recommended: '',
+      related: '',
       loading: movies ? false : true,
     };
   }
 
   componentDidMount() {
+    this.setState({
+      movies: this.props.singleMovieRequest(this.props.id),
+    });
+    if (!this.state.loading) {
       this.setState({
-        movies: this.props.singleMovieRequest(this.props.id),
+        related: this.props.relatedRequest(this.props.movies.movies.genres[0]),
       });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -57,25 +63,25 @@ class MovieDetails extends Component {
     if (isLoading) {
       return (<p>loading</p>);
     } else {
-      const movieDetails = this.props.movies.movies;
+      const movieDetailsItem = this.props.movies.movies;
       return (
         <Row className={rouletteDetails}>
           <Col md={9} mdOffset={1}>
             <Row>
               <Col md={4}>
-                <Image src={movieDetails.poster_path} responsive thumbnail />
+                <Image src={movieDetailsItem.poster_path} responsive thumbnail />
               </Col>
               <Col md={7} mdOffset={1}>
-                <div className="title">{movieDetails.title}</div>
-                <b>{movieDetails.tagline}</b>
+                <div className="title">{movieDetailsItem.title}</div>
+                <b>{movieDetailsItem.tagline}</b>
                 <div className="time-info">
-                  <span>Release date: {movieDetails.release_date}</span>
-                  <span>Runtime {movieDetails.runtime} mins</span>
+                  <span>Release date: {movieDetailsItem.release_date}</span>
+                  <span>Runtime {movieDetailsItem.runtime} mins</span>
                 </div>
-                <div className="overview"><b>Story:</b> {movieDetails.overview}</div>
-                <div className="genres"><b>Genres:</b> {listGenres(movieDetails.genres)}</div>
+                <div className="overview"><b>Story:</b> {movieDetailsItem.overview}</div>
+                <div className="genres"><b>Genres:</b> {listGenres(movieDetailsItem.genres)}</div>
                 <div className="rating">
-                  <b>Rating:</b> {movieDetails.vote_average} from {movieDetails.vote_count} votes
+                  Rating: {movieDetailsItem.vote_average} from {movieDetailsItem.vote_count} votes
                 </div>
               </Col>
             </Row>
@@ -83,10 +89,11 @@ class MovieDetails extends Component {
               <Navbar>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    More films in genre "{movieDetails.genres[0]}"
+                    More films in genre "{movieDetailsItem.genres[0]}"
                   </Navbar.Brand>
                 </Navbar.Header>
               </Navbar>
+              <RelatedList relatedMovies={this.props.movies.related.data} />
             </Row>
           </Col>
         </Row>
@@ -98,6 +105,7 @@ class MovieDetails extends Component {
 const mapStateToProps = (state) => {
   return {
       movies: state.movies,
+      related: state.related,
   };
 };
 
@@ -106,8 +114,8 @@ const mapDispatchToProps = (dispatch) => {
         singleMovieRequest: (id) => {
             dispatch(singleMovieRequest(id));
         },
-        seeAlso: (recommended) => {
-            dispatch(seeAlso(recommended));
+        relatedRequest: (genre) => {
+            dispatch(relatedRequest(genre));
         },
     };
 };

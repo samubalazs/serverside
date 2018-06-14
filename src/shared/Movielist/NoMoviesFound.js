@@ -15,7 +15,10 @@ export default class NoMoviesFound extends React.Component {
           <Row>
             <Col md={9} mdOffset={1}>
               <Row>
-                <div className="center">No films found</div>
+                <div className="center">
+                  Welcome to Netflix Roulette<br />
+                  Please type your interest to see the result...
+                </div>
               </Row>
             </Col>
           </Row>

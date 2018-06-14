@@ -45,12 +45,7 @@
       margin-right: 20px;
       font-weight: bold;
       background-color: @netflix-grey-button;
-      border-color: @netflix-black;
-
-      &:hover, &:active {
-        background-color: @netflix-red-button;
-        border-color: @netflix-red;
-      }
+      border-color: @netflix-black;      
 
       &.search {
         float: right;
@@ -59,6 +54,17 @@
         width: 120px;
         margin-right: 0;
       }
+    }
+
+    .btn.focus,
+    .btn:focus,
+    .btn:hover
+    .btn-default.active,
+    .btn-default:active,
+    .btn-default.focus,
+    .btn-default:focus {
+      background-color: @netflix-red-button;
+        border-color: @netflix-red;
     }
   }
 }

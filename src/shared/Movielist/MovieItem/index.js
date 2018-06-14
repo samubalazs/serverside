@@ -20,11 +20,11 @@ class MovieItem extends Component {
         <Link to={`/film/${details.id}`}>
           <Image src={details.poster_path} responsive thumbnail />
         </Link>
-        <div className="title">{truncate(details.title, 30)}</div>
+        <div className="title">{truncate(details.title, 25)}</div>
         <Badge pullRight>
           {releaseDate(details.release_date)}
         </Badge>
-        <div className="genres">{listGenres(details.genres, 3)}</div>
+        <div className="genres">{listGenres(details.genres, 2)}</div>
       </Col>
     );
   }

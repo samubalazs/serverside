@@ -6,8 +6,8 @@ export const linkId = (id) =>
 
 export const listGenres = (genres, limit) =>
   !limit || genres.length <= limit ?
-    genres.join(', ') :
-    `${genres.slice(0, limit).join(', ')}...`;
+  genres.map((x) => x.replace(/Science Fiction/g, 'SciFi')).join(', ') :
+    `${genres.map((x) => x.replace(/Science Fiction/g, 'SciFi')).slice(0, limit).join(', ')}...`;
 
 export const releaseDate = (date) =>
   date.split('-')[0];

@@ -1,5 +1,5 @@
 import NoMoviesFound from '../shared/Movielist/NoMoviesFound';
-import MovieList from '../shared/MovieList';
+import MovieList from '../shared/Movielist';
 import MovieDetails from '../shared/Movielist/MovieItem/MovieDetails';
 import { MissingPage } from '../shared/Error/MissingPage';
 
